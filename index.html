@@ -10,41 +10,82 @@
         div {
             margin: 0 auto;
             width: 800px;
-            margin-top: 300px;
+            margin-top: 200px;
             font-size: 2.5em;
             vertical-align:text-bottom;
         }
 
         input[type='text'] {
-            width: 500px;
+            width: 700px;
             height: 40px;
-            
+       
         }
 
         input[type='button'] {
-            width: 80px;
+            width: 180px;
             height:45px;
         }
 
+        #doc {
+            margin-left: 120px;
+        }
+
+        #ppt {
+            margin-left: 50px;
+        }
+
+
+        footer {
+            margin-top: 100px;
+        }
+
+        p {
+            color: white;
+            text-align: center;
+            background-color: #303033;
+        }
+        a:link {
+            color: #218CDD;
+        }
     </style>
 </head>
 <body>
     <div>
         <fieldset>
             <legend>请输入文件链接</legend>
-            <input id="url" type="text" name="resurl" > <input id="button" type="button" value="解析">
+            <input id="url" type="text" name="resurl" >
+             <input id="doc" type="button" value="解析普通文档(含pdf)">
+            <input id="ppt" type="button" value="解析PPT">
         </fieldset>
      
     </div>
+
+    <footer >
+        
+        <p >遇到问题联系:<a href="mailto:1836667177@qq.com">qq邮箱</a></p>
+      </footer>
     <script>
-        var button = document.getElementById("button");
-        button.onclick = function () {
+        var doc = document.getElementById("doc");
+        doc.onclick = function () {
             var urlstr = document.getElementById("url").value;
             var p = urlstr.indexOf('?');
             if (p != -1) {
                 urlstr = urlstr.substring(0, p)
             }
             urlstr = urlstr.replace("view", "share") + "?share_api=1&width=1400";
+        
+            window.open(urlstr, '_blank');
+            document.getElementById("url").value = "";
+        }
+
+        var ppt = document.getElementById("ppt");
+        ppt.onclick = function () {
+            var urlstr = document.getElementById("url").value;
+            var p = urlstr.indexOf('?');
+            if (p != -1) {
+                urlstr = urlstr.substring(0, p)
+            }
+            urlstr = urlstr.replace("view", "share");
         
             window.open(urlstr, '_blank');
             document.getElementById("url").value = "";
